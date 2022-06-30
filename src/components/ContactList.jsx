@@ -13,8 +13,7 @@ export  const ContactList = ({
           name={data.name}
           number={data.number}
           onDeleteContact={onDeleteContact} />
-            {/* <button onClick={()=>onDeleteContact(data.id)}>Delete</button> */}
-      </ul> )}     
+       </ul> )}     
     </>
 }
 

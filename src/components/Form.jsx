@@ -1,31 +1,38 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-export class Form extends Component {
-    state = {
-        name: '',
-        number: ''
-    }
-    handleChange = e => {
-    const { name, value } = e.currentTarget;
-    this.setState({ [name]: value });
-    };
-    
-  handleSubmit = e => {
+const Form = ({ onSubmit }) => {
+    const [name, setName] = useState('');
+    const [number, setNumber] = useState('');
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+  switch (name) {
+    case ('name'):
+      setName(value);
+      break;
+    case ('number'):
+      setNumber(value);
+      break;
+    default:
+      return;
+  }
+  }
+ 
+const handleSubmit = e => {
     e.preventDefault();
 
-      this.props.onSubmit(this.state);
-      this.reset();
+      onSubmit({name,number});
+      reset();
     }
-    reset = () => {
-        this.setState({ name: '', number: '' });    
+const reset = () => {
+  setName('');
+  setNumber('');
     }
-
-    render() {
         return <>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={handleSubmit}>
           <label htmlFor="">
           Name<br />
-              <input style={{ width: 300, height: 40}} value={this.state.name} onChange = {this.handleChange}
+              <input style={{ width: 300, height: 40}} value={name} onChange = {handleChange}
                 type="text"
                 name="name"
                 pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -36,7 +43,7 @@ export class Form extends Component {
           <br/>
           <label htmlFor="">
           Number<br/>
-          <input style={{ width: 300, height: 40}} value={this.state.number} onChange = {this.handleChange}
+          <input style={{ width: 300, height: 40}} value={number} onChange = {handleChange}
                 type="tel"
                 name="number"
                 pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -49,5 +56,4 @@ export class Form extends Component {
         </form>
         </>
     }
-}
 export default Form;
