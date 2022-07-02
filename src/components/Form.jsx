@@ -31,7 +31,7 @@ const Form = ({ onSubmit }) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="">
+        <label>
           Name
           <br />
           <input
@@ -46,7 +46,7 @@ const Form = ({ onSubmit }) => {
           />
         </label>
         <br />
-        <label htmlFor="">
+        <label>
           Number
           <br />
           <input
